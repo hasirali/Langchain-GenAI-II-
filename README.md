@@ -25,15 +25,19 @@ An intelligent research assistant powered by **Google Gemini 2.5 Flash** and **L
 ### 1. Clone the Repository
 ```bash
 git clone [https://github.com/your-username/smart-research-tool.git](https://github.com/your-username/smart-research-tool.git)
+
 cd smart-research-tool
+```
 2. Install Dependencies
-Bash
+ ```
 pip install streamlit langchain-google-genai python-dotenv
+```
 3. Setup Environment Variables
 Create a .env file in the root directory and add your Google API Key:
-
-Code snippet
+```
 GOOGLE_API_KEY=your_gemini_api_key_here
+```
 4. Run the Application
-Bash
+```
 streamlit run app.py
+```
