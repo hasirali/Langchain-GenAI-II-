@@ -3,28 +3,11 @@ langchain
 langchain-core
 langchain-community
 
-# Embeddings / NLP
-sentence-transformers
-transformers
-torch
 
-# Vector DB & Document Handling
-chromadb
-pypdf
 
 # Environment Variables
 python-dotenv
 
-# Hugging Face
-huggingface-hub
-langchain-huggingface
-
-# OpenAI
-openai
-langchain-openai
-
-# Anthropic
-langchain-anthropic
 
 # Google (Gemini)
 google-generativeai
@@ -34,6 +17,3 @@ langchain-google-genai
 numpy
 scikit-learn
 
-# Optional (Recommended)
-tiktoken
-faiss-cpu
