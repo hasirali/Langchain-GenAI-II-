@@ -1,0 +1,17 @@
+{
+    "name": null,
+    "input_variables": [
+        "length",
+        "paper_input",
+        "style"
+    ],
+    "optional_variables": [],
+    "output_parser": null,
+    "partial_variables": {},
+    "metadata": null,
+    "tags": null,
+    "template": "\n    You are a Senior Research Scientist. \n    Analyze the following topic/paper: {paper_input}\n    \n    Constraints:\n    - Writing Style: {style}\n    - Detail Level: {length}\n\n    Please provide the output in this EXACT format:\n    \n    ## \ud83d\udccc Executive Summary\n    (Provide a high-level overview)\n    \n    ## \ud83d\udcd6 Core Concepts\n    (Explain the main ideas and methodology in bullet points)\n    \n    ## \ud83d\udca1 Why It Matters\n    (Explain the real-world significance and applications)\n    \n    ## \ud83d\ude80 Future Implications\n    (Predict how this will evolve in the next 5 years)\n    ",
+    "template_format": "f-string",
+    "validate_template": false,
+    "_type": "prompt"
+}

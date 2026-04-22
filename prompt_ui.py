@@ -1,22 +1,19 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate, load_prompt
 load_dotenv()
 model = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
 
 
-# --- UI Setup ---
+# -------------------------------------UI Setup---------------------------------------------------
 st.set_page_config(page_title="AI Research Assistant", page_icon="🔬")
 st.title('🔬 Smart Research Tool')
 st.markdown("---")
 
 st.sidebar.header("Pre-Loaded Papers")
 papers_input = [
-    "Select...",
-    "Attention Is All You Need (Transformer Architecture)",
-    "Generative Adversarial Networks (GANs)",
-    "Gemini 1.5: Technical Report",
+    "Select...", "Attention Is All You Need (Transformer Architecture)", "Generative Adversarial Networks (GANs)", "Gemini 1.5: Technical Report",
     "Sparks of Artificial General Intelligence (GPT-4 Study)"
 ]
 selected_paper = st.sidebar.selectbox('Quick Research:', papers_input)
@@ -24,51 +21,22 @@ user_input = st.text_area('Enter your specific research query or topic:', placeh
 
 style_input = st.selectbox('Select a writing style:', ["Professional", "Friendly", "Hinglish"])
 length_input = st.selectbox('Select summary length:', ["Short (1-2 lines)", "Medium (5-7 lines)", "Long (8+ lines)"])
+# -------------------------------------UI Setup---------------------------------------------------
 
-# --- Prompt Template ---
-template = PromptTemplate(
-    template=
-    """
-    You are a Senior Research Scientist. 
-    Analyze the following topic/paper: {paper_input}
-    
-    Constraints:
-    - Writing Style: {style}
-    - Detail Level: {length}
-
-    Please provide the output in this EXACT format:
-    
-    ## 📌 Executive Summary
-    (Provide a high-level overview)
-    
-    ## 📖 Core Concepts
-    (Explain the main ideas and methodology in bullet points)
-    
-    ## 💡 Why It Matters
-    (Explain the real-world significance and applications)
-    
-    ## 🚀 Future Implications
-    (Predict how this will evolve in the next 5 years)
-    """,
-    input_variables=["paper_input", "style", "length"]
-)
-# Prompt Template
-
-# filling the place holders in the template with the user inputs
-prompt = template.invoke({
-    'paper_input': selected_paper if selected_paper != "Select..." else user_input,
-    'style': style_input,
-    'length': length_input
-})
-# filling the place holders in the template with the user inputs
-
-
+#template
+template = load_prompt('template.json')
+#template
 
 
 if st.button('Summarize'):
-    result = model.invoke(prompt)
+    chain = template | model
+    result = chain.invoke({
+        'paper_input': selected_paper if selected_paper != "Select..." else user_input,
+        'style': style_input,
+        'length': length_input
+    })
     st.write(result.content)
-
+    
 # Working we are asking user input from dropdown after that we are filling the place holders in the template with the user inputs and then we are passing the filled template to the model and then we are showing the result on the screen.
 
 
