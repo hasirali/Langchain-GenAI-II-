@@ -1,6 +1,6 @@
 ﻿# Langchain-GenAI-II-
 <img width="1918" height="869" alt="image" src="https://github.com/user-attachments/assets/b8bbb93c-57ca-44d9-8807-f9e2202d718c" />
-Markdown
+
 # 🔬 AI Smart Research Tool
 
 An intelligent research assistant powered by **Google Gemini 2.5 Flash** and **LangChain**. This tool allows users to quickly summarize complex academic papers or custom research topics with adjustable writing styles and lengths.
